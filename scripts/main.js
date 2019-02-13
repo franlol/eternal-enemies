@@ -35,9 +35,24 @@ const main = () => {
         canvasElement.setAttribute("height", height);
         canvasElement.setAttribute("width", width);
 
-        setTimeout(buildGameOver, 3000);
+        document.addEventListener("keydown", (event) => setPlayerDirection(event));
+
+
+        // setTimeout(buildGameOver, 3000);
         const game = new Game(canvasElement);
         game.startLoop();
+
+        const setPlayerDirection = (event) => {
+            switch (event.code) {
+                case "ArrowUp":
+                    game.player.setDirection(-1);
+                    break;
+
+                case "ArrowDown":
+                    game.player.setDirection(1);
+                    break;
+            }
+        }
     }
 
     const buildGameOver = () => {
